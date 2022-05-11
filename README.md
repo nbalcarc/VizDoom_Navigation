@@ -1,10 +1,10 @@
-## VizDoom Navigation
+# VizDoom Navigation
 Navigation skill for WSU's VizDoom AI (REU)
 
 # Directions
 It is advised to place the skills folder next to GUI-Vizdoom.py. Instructions for how to implement the skill are provided, but a drop-in replacement for GUI-Vizdoom.py is provided, which can be used as a reference or simply run as is. The provided GUI-Vizdoom.py allows access to manual input as well as automatic pathfinding. Instructions for these controls are also provided below.
 
-Interface
+## Interface
 First import the necessary class as such:
   from skills.Navigation import Navigator
 Initiate a Navigation object, preferably tied to the agent's object properties. Leave the parameters as their defaults.
@@ -19,7 +19,7 @@ Once we are done pathfinding, especially once a False value is returned for the 
   navigator.clear_pathfinding()
 This can also be run anytime to cancel all pathfinding operations.
 
-Manual Input
+## Manual Input
 The default manual controls of VizDoom are retained (wasd for movement and jkl for orientation and shooting), however a few new controls have been added. Pressing p will initiate a request for pathfinding. Upon pressing p, the program will instantly begin waiting for the first coordinate. The program supports negative values. Backspace can also be used to correct any mistakes. Once the coordinate in the terminal looks correct, press enter. Now enter your second coordinate. Press enter when ready to begin pathfinding. The agent will take control and follow the instructions given to it via navigator.travel_to, and once it receives a False as the second return value, it'll give you manual control again. At any point during this process, you can press o to regain control and cancel all pathfinding or coordinate-entering operations. There is also another button, i, which will execute the navigator.debug_print() method, which can be customized for your use, or can be left alone entirely; this is mostly just for debugging on my end.
 
 # Notes
