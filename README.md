@@ -6,17 +6,28 @@ It is advised to place the skills folder next to GUI-Vizdoom.py. Instructions fo
 
 ## Interface
 First import the necessary class as such:
+
   from skills.Navigation import Navigator
+  
 Initiate a Navigation object, preferably tied to the agent's object properties. Leave the parameters as their defaults.
 Every frame, update the navigator's internal features as such:
+
   navigator.update_features(feature_vector: dict)
+  
 Whenever we plan to pathfind or continue pathfinding, run:
+
   navigator.review_action()
+  
  This will ensure the previous action executed correctly if there was one. If there was any problem, it'll make internal adjustments. Now, to pathfind, choose two coordinates that represent our destination, and pass them to the navigator's travel_to method. It'll return an action and a boolean which lets you know if there are more actions. Here's an example:
+  
   action, more_actions = navigator.travel_to(destination_x, destination_y)
+  
 In this case, action is a dict and more_actions is a bool. The x and y coordinates can also be packaged as a tuple and passed as a single parameter. To retrieve the next action, call the same method with the same parameters, and it will return the next move. Once there are no more moves, or it has run into an error (see note 1 below), it'll return False as the second return value.
+
 Once we are done pathfinding, especially once a False value is returned for the second return value, it's important to run this command:
+  
   navigator.clear_pathfinding()
+
 This can also be run anytime to cancel all pathfinding operations.
 
 ## Manual Input
